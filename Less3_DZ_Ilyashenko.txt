@@ -1,0 +1,56 @@
+﻿1. Управление пользователями:
+a) создать пользователя user1, указав shell /bin/bash и создав домашний каталог, используя утилиту useradd;
+
+sudo useradd user1 -s /bin/bash
+
+b) создать пользователя user2, указав shell /bin/bash и создав домашний каталог, используя утилиту adduser;
+
+sudo adduser user2 --home ~/Documents/user2
+
+c) удалить пользователя user1 вместе с домашним каталогом, используя утилиту userdel;
+
+sudo userdel user1
+
+d) создать пользователя user1, указав основную группу user2
+
+sudo useradd user1 -g user2
+
+d) сменить пароль user1 одного из созданных пользователей, используя passwd
+
+sudo passwd user1
+
+e) сменить пароль user2 одного из созданных пользователей, используя usermod
+
+sudo usermod -p "" user2
+
+2. Управление группами:
+a) создать группы group1, group2 с использованием groupadd;
+
+sudo groupadd group1
+sudo groupadd group2
+
+b) добавить user1 в группы group1, group2 разом при помощи одной команды usermod, не меняя его основной группы;
+
+sudo usermod -aG group1 user1
+sudo usermod -aG group2 user1
+
+с) создать группу user1 с GID=1516 и сделать ее основной для пользователя user1
+
+sudo groupadd -g 1516 user1
+sudo usermod -g 1516 user1
+
+3. Создать пользователя с правами суперпользователя. Сделать так, чтобы sudo не требовал пароль для выполнения команд.
+
+sudo usermod -aG sudo user1
+sudo vim /etc/sudoers.d/user1
+$user1 ALL = (ALL) NOPASSWD:ALL
+
+вроде должно было сработать, но вообще-то не сработало) но хоть sudo не сломался
+
+4. * Используя дополнительные материалы, выдать одному из созданных пользователей право на выполнение ряда команд,
+требующих прав суперпользователя (команды выбираем на своё усмотрение).
+
+sudo vim /etc/sudoers.d/user2
+$user2 ALL = (ALL:ALL) usr/bin/ls
+
+
