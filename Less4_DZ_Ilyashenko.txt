@@ -22,7 +22,6 @@ bla
 
 cat > newfile
 more blablabla
-
 kill -INT <PID cat>
 
 3. Изменить конфигурационный файл службы SSH: /etc/ssh/sshd_config, отключив аутентификацию по паролю PasswordAuthentication no. Выполните рестарт службы systemctl restart sshd (service sshd restart), верните аутентификацию по паролю, 
@@ -32,6 +31,5 @@ sudo vim /etc/ssh/sshd_config
 PasswordAuthentication yes ---> PasswordAuthentication no
 и обратно также
 
-вообще я что-то не заметила принципиальной разницы;
+вообще я что-то не заметила принципиальной разницы между reload и restart;
 но судя по всему reload надо писать, когда к этой машине кто-то подключен, а restart - когда подключений нет
-
