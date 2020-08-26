@@ -52,5 +52,3 @@ $user1 ALL = (ALL) NOPASSWD:ALL
 
 sudo vim /etc/sudoers.d/user2
 $user2 ALL = (ALL:ALL) usr/bin/ls
-
-
