@@ -1,0 +1,37 @@
+1. Прочитать в методическом пособии о сигналах.
+Запустить в одном терминале программу nano. В другом терминале посмотреть PID процесса (используйте ps aux) 
+и остановить с помощью kill, посылая разные типы сигналов (SIGHUP, SIGTERM, SIGSEGV, SIGILL). 
+Чем отличается заверщение программы в зависимости от сигнала?
+
+nano
+ps aux
+kill -HUP 2441
+HUP/TERM - не заметила разницу
+SEGV - предложил отрепортить баг
+ILL - совсем все порушил(
+
+2. Самостоятельно найти информацию о том, какой сигнал посылается запущенной программе при нажатии комбинации ctrl+c и ctrl+d. Создайте файл при помощи команды cat > file_name, напишите текст и завершите комбинацией ctrl+d. Какой сигнал передадим процессу?
+
+ctrl+c = SIGINT, прекратить текущий процесс
+ctrl+d = exit, EOF
+cat > newfile
+bla
+bla
+bla
+<cntrl+d>
+
+cat > newfile
+more blablabla
+
+kill -INT <PID cat>
+
+3. Изменить конфигурационный файл службы SSH: /etc/ssh/sshd_config, отключив аутентификацию по паролю PasswordAuthentication no. Выполните рестарт службы systemctl restart sshd (service sshd restart), верните аутентификацию по паролю, 
+выполните reload службы systemctl reload sshd (services sshd reload). В чём различие между действиями restart и reload?
+
+sudo vim /etc/ssh/sshd_config
+PasswordAuthentication yes ---> PasswordAuthentication no
+и обратно также
+
+вообще я что-то не заметила принципиальной разницы;
+но судя по всему reload надо писать, когда к этой машине кто-то подключен, а restart - когда подключений нет
+
